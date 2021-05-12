@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>5PraktDarbsSkurjats</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <style>
+        a {
+            text-decoration:none;
+        }
+        body {
+            background:gray;
+            color:white;
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+        }
+        .container {
+            width: 1600px;
+            margin: 35px auto;
+            overflow:auto;
+        }
+        .slider-outer {
+            width: 1600px;
+        }
+        .slider-inner {
+            width: 800px;
+            height: 534px;
+            position: relative;
+            overflow:hidden;
+            float:left;
+            border: #00FFFF solid 1px;
+            border-radius: 24px;
+            margin-bottom: 10px;
+        }
+        .slider-inner img {
+            display: none;
+        }
+        .slider-inner img.active {
+            display: inline-block;
+            max-width:100%;
+            max-height:100%;
+        }
+        .back,.front{
+            float: left;
+            margin-top: 13%;
+            cursor:pointer;
+        }
+        .thumbContainer {
+            display: inline-block;
+            overflow: auto;
+            width:auto;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 24px;
+        }
+        .thumbContainer img {
+            border: transparent solid 1px;
+            width: 100px;
+            height: 100px;
+            max-width:100%;
+            max-height:100%;
+        }
+        .thumbContainer img:hover {
+            border: #00FFFF solid 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Parkt. Darbs 5</h1>
+        <h2>Attēlu galereja</h2>
+        <div class="slider-outer">
+            <img src="Atteli/back.png" class="back" alt="Back">
+            <div class="slider-inner">
+                <img src="Atteli/img_0.jpg" class="active">
+                <img src="Atteli/img_1.jpg">
+                <img src="Atteli/img_2.jpg">
+                <img src="Atteli/img_3.jpg">
+                <img src="Atteli/img_4.jpg">
+                <img src="Atteli/img_5.jpg">
+                <img src="Atteli/img_6.jpg">
+                <img src="Atteli/img_7.jpg">
+                <img src="Atteli/img_8.jpg">
+                <img src="Atteli/img_9.jpg">
+            </div>
+            <img src="Atteli/front.png" class="front" alt="Front">
+            <div class="thumbContainer">
+                <img src="Atteli/img_0.jpg">
+                <img src="Atteli/img_1.jpg">
+                <img src="Atteli/img_2.jpg">
+                <img src="Atteli/img_3.jpg">
+                <img src="Atteli/img_4.jpg">
+                <img src="Atteli/img_5.jpg">
+                <img src="Atteli/img_6.jpg">
+                <img src="Atteli/img_7.jpg">
+                <img src="Atteli/img_8.jpg">
+                <img src="Atteli/img_9.jpg">
+            </div>
+        </div>
+    </div>
+<script>
+    $(document).ready(function(){
+        $('.front').on('click', function(){
+            let currentImg = $('.active');
+            let nextImg = currentImg.next();
+            if(nextImg.length){
+                currentImg.removeClass('active').css('z-index', -10);
+                nextImg.addClass('active').css('z-index', 10);
+            }
+        });
+        $('.back').on('click', function(){
+            let currentImg = $('.active');
+            let backImg = currentImg.prev();
+            if(backImg.length){
+                currentImg.removeClass('active').css('z-index', -10);
+                backImg.addClass('active').css('z-index', 10);
+            }
+        });
+        $('.thumbContainer img').on('click', function(){
+            let currentImg = $('.active');
+            let nextImgSrc = $(this).attr('src');
+            let sliderImg = $('.slider-inner').children('img');
+            for(let i=0; i < sliderImg.length; i++){
+                if (sliderImg.eq(i).attr('src') === nextImgSrc){
+                    currentImg.removeClass('active').css('z-index', -10);
+                    sliderImg.eq(i).addClass('active').css('z-index', 10);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
